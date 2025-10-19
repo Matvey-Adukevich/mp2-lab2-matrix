@@ -298,7 +298,7 @@ public:
       }
       TDynamicMatrix mat(sz);
       for (size_t i = 0; i < sz; i++) {
-          mat[i] = m[i] + pMem[i];
+          mat[i] = pMem[i] + m[i];
       }
       return mat;
   }
