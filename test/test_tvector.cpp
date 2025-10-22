@@ -12,10 +12,10 @@ TEST(TDynamicVector, cant_create_too_large_vector)
   ASSERT_ANY_THROW(TDynamicVector<int> v(MAX_VECTOR_SIZE + 1));
 }
 
-//TEST(TDynamicVector, throws_when_create_vector_with_negative_length)
-//{
-//  ASSERT_ANY_THROW(TDynamicVector<int> v(-5));
-//}
+TEST(TDynamicVector, throws_when_create_vector_with_negative_length)
+{
+  ASSERT_ANY_THROW(TDynamicVector<int> v(-5));
+}
 
 TEST(TDynamicVector, can_create_copied_vector)
 {
@@ -48,13 +48,13 @@ TEST(TDynamicVector, can_get_size)
   EXPECT_EQ(4, v.size());
 }
 
-//TEST(TDynamicVector, can_set_and_get_element)
-//{
-//  TDynamicVector<int> v(4);
-//  v[0] = 4;
-//
-//  EXPECT_EQ(4, v[0]);
-//}
+TEST(TDynamicVector, can_set_and_get_element)
+{
+  TDynamicVector<int> v(4);
+  v[0] = 4;
+
+  EXPECT_EQ(4, v[0]);
+}
 
 TEST(TDynamicVector, throws_when_set_element_with_negative_index)
 {

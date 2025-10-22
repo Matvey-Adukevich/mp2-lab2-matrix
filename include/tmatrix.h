@@ -23,13 +23,14 @@ protected:
   size_t sz;
   T* pMem;
 public:
-  TDynamicVector(size_t size = 1) : sz(size)
+  TDynamicVector(size_t size = 1)
   {
-    if (size == 0)
+    if (size <= 0)
       throw out_of_range("Vector size should be greater than zero");
     if (size > MAX_VECTOR_SIZE) {
         throw out_of_range("Exception size");
     }
+    sz = size;
     pMem = new T[sz]();// {}; // У типа T д.б. констуктор по умолчанию
   }
   TDynamicVector(T* arr, size_t s) : sz(s)
@@ -83,10 +84,22 @@ public:
   // индексация
   T& operator[](size_t ind)
   {
+      if (ind >= sz) {
+          throw out_of_range("Exception ind is out bound");
+      }
+      if (ind < 0) {
+          throw out_of_range("Exception ind is out bound");
+      }
       return pMem[ind];
   }
   const T& operator[](size_t ind) const
   {
+      if (ind >= sz) {
+          throw out_of_range("Exception ind is out bound");
+      }
+      if (ind < 0) {
+          throw out_of_range("Exception ind is out bound");
+      }
       return pMem[ind];
   }
   // индексация с контролем
@@ -276,7 +289,7 @@ public:
   // матрично-векторные операции
   TDynamicVector<T> operator*(const TDynamicVector<T>& v)
   {
-      if (sz != v.sz) {
+      if (sz != v.size()) {
           throw out_of_range("Exception mat op *vec");
       }
       TDynamicVector<T> vec(sz);
@@ -285,7 +298,7 @@ public:
           for (size_t j = 0; j < sz; j++) {
               res += pMem[i][j] * v[j];
           }
-          vec.pMem[i] = res;
+          vec[i] = res;
       }
       return vec;
   }
