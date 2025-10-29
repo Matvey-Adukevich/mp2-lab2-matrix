@@ -285,11 +285,12 @@ public:
   // матрично-скалярные операции
   TDynamicMatrix operator*(const T& val)
   {
-      TDynamicMatrix<T> mat(sz);
+      /*TDynamicMatrix<T> mat(sz);
       for (size_t i = 0; i < sz; i++) {
           mat.pMem[i] = pMem[i] * val;
       }
-      return mat;
+      return mat;*/
+      return TDynamicVector<TDynamicMatrix<T>>::operator*(val);
   }
 
   // матрично-векторные операции
